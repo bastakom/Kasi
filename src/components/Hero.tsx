@@ -5,27 +5,32 @@ import Image from "next/image";
 export const Hero = ({ blok }: any) => {
   const { bg, subheading, logo, contact, title, home } = blok;
 
-  console.log("i hero", blok);
-
   return (
     <section {...storyblokEditable(blok)}>
-      <div className="h-[80vh] py-[5rem] w-full  relative">
-        <Image src={bg.filename} alt="" layout="fill" object-fit="cover" />
+      <div className="h-[100vh] py-[5rem] w-full relative">
+        <Image
+          src={bg.filename}
+          alt={bg.title}
+          layout="fill"
+          fill
+          objectFit="cover"
+          objectPosition="top"
+        />
         {/* Subheading text */}
         <div
-          className=" absolute top-[7%] left-[4%] 
-         text-white flex items-start font-bold gap-[74px]"
+          className=" absolute top-[5%] md:top-[8%] md:left-[2%] p-[1rem]
+         text-white flex  flex-col md:items-start md:flex-row font-bold gap-[74px]"
         >
-          <div className="w-[450px] height-[120px]">
-            <img src={logo.filename} className="w-[100%]" alt="Logo" />
+          <div className="w-[150px] md:w-[100%] height-[100px]">
+            <img src={logo.filename} className=" md:w-[100%]" alt="Logo" />
           </div>
 
-          <div className="flex flex-col gap-[50.67px]">
-            <p className="w-[557px] h-[157px] font-normal text-[38px] leading-[1.37] ">
+          <div className="flex items- center flex-col gap-[57.6px]">
+            <p className="w-[300px]  p-[0.5rem] text-[32px] md:w-[34.8125rem] md:p-[0rem] md-[0rem] font-normal md:text-[38px] leading-[1.37] ">
               {subheading}
             </p>
             <LinkBtn
-              className="w-[182px] h-[52px] border-2 border-white font-medium text-[20px] flex items-center justify-center"
+              className=" w-[65%] md:w-[32.7%] h-[3.25rem] border-2 ml-[0.5rem] border-white font-medium text-[20px] md:ml-[0rem] flex items-center justify-center"
               link="#contact-form"
               title={title}
             />

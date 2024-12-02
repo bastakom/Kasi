@@ -13,12 +13,10 @@ async function fetchData() {
 
 export const Header = async () => {
   const story = await fetchData();
-  console.log(story);
   return <HeaderSection props={story} />;
 };
 
 export const Footer = async () => {
   const story = await fetchData();
-  console.log(story);
   return <FooterSection props={story} />;
 };

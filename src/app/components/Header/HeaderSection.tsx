@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import LinkBtn from "@/components/LinkBtn";
 
 const HeaderSection = (props: any) => {
-  console.log("in headerSection", props.props.story.content);
+
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState<number>(0);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -145,41 +145,51 @@ const HeaderSection = (props: any) => {
 };
 
 export default HeaderSection; */
-
 "use client";
 import { useState, useEffect } from "react";
 import LinkBtn from "@/components/LinkBtn";
 import { FaLinkedinIn } from "react-icons/fa6";
+import { IoMdClose } from "react-icons/io";
 
 const HeaderSection = (props: any) => {
-  console.log("in headerSection", props.props.story.content);
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [positioning, setPositioning] = useState("right: 0%;");
-  const [ulStyling, setÚlStyling] = useState({
+  const [positioning, setPositioning] = useState("right: 0%");
+  const [ulStyling, setUlStyling] = useState({
     color: "transparent",
     padding: "0",
     paddingLeft: "0",
   });
   const [textColor, setTextColor] = useState<string>("text-white");
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [activeMenu, setActiveMenu] = useState<number | null>(null);
 
-  const handleMenu = () => {
-    // Visa ikonen endast inom de första 400 pixlarna
-    if (window.scrollY <= 550) {
-      setIsVisible(true);
+  const handleResize = () => {
+    // Kolla skärmstorlek för att sätta isMobile flaggan
+    if (window.innerWidth <= 600) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  const handleScroll = () => {
+    // Ändra visibilitet av LinkedIn-ikonen baserat på scrollposition och skärmstorlek
+    if (window.scrollY <= 450 && !isMobile) {
+      setIsVisible(true); // Visa LinkedIn-ikonen om scrollposition är under 450px och inte mobil
     } else {
       setIsVisible(false);
     }
 
-    // Ändra textfärg baserat på scrollposition
-    if (window.scrollY > 550) {
+    // Ändra textfärg och menyposition baserat på scrollposition
+    if (window.scrollY > 450) {
       setTextColor("text-black");
-      setÚlStyling({ color: "#ececeb", padding: "30px", paddingLeft: "40px" });
+      setUlStyling({ color: "#ececeb", padding: "30px", paddingLeft: "40px" });
       setPositioning("-15%");
     } else {
       setTextColor("text-white");
       setPositioning("0%");
-      setÚlStyling({
+      setUlStyling({
         color: "transparent",
         padding: "0",
         paddingLeft: "0",
@@ -188,10 +198,17 @@ const HeaderSection = (props: any) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleMenu);
+    // Lägg till event listeners för scroll och resize
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
+    // Initiera om vid mount för att kontrollera skärmstorlek direkt
+    handleResize();
+
+    // Rensa event listeners vid unmount
     return () => {
-      window.removeEventListener("scroll", handleMenu);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -199,21 +216,26 @@ const HeaderSection = (props: any) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleMenuClick = (index: number) => {
+    setActiveMenu(index); // Set active menu index
+  };
+
   const menuItems = props.props.story.content.header_menu;
+  const { Logo, button, title, home } = props.props.story.content;
 
   return (
     <header>
       <nav
-        className="dark:bg-gray-900 fixed top-[4%] left-85 right-0 z-10"
-        style={{ right: positioning, zIndex: 1000 }}
+        className="fixed top-[6%] md:top-[8%] left-[75%] right-0 z-10"
+        style={{ right: isMobile ? "-2%" : positioning, zIndex: 1000 }}
       >
-        <div className="max-w-screen-xl mx-auto p-4">
+        <div className="max-w-screen-xl mx-auto md:p-4">
           <div className="flex items-center justify-center">
             <div className="flex items-center">
               {/* Hamburger-meny knapp */}
               <button
                 type="button"
-                className="inline-flex items-center p-2 w-16 h-16 justify-center text-sm rounded-lg md:hidden focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="inline-flex items-center p-2 w-16 h-16 justify-center text-sm rounded-lg md:hidden focus:outline-none"
                 aria-controls="navbar-search"
                 aria-expanded={isMenuOpen ? "true" : "false"}
                 onClick={toggleMenu}
@@ -241,7 +263,7 @@ const HeaderSection = (props: any) => {
               {/* Meny för större skärmar */}
               <div className="flex items-center w-full justify-between md:justify-center">
                 <ul
-                  className="hidden md:flex md:flex-col md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 justify-evenly w-[380px]"
+                  className="hidden md:flex md:flex-col md:mt-0 md:border-0 md:bg-transparent justify-evenly"
                   style={{
                     backgroundColor: ulStyling.color,
                     padding: ulStyling.padding,
@@ -249,7 +271,13 @@ const HeaderSection = (props: any) => {
                   }}
                 >
                   {menuItems.map((element: any, i: number) => (
-                    <li key={i}>
+                    <li
+                      key={i}
+                      onClick={() => handleMenuClick(i)}
+                      className={`cursor-pointer ${
+                        activeMenu === i ? "underline" : ""
+                      }`}
+                    >
                       <LinkBtn
                         className={`${textColor} font-small text-[38px]`}
                         link={element.link.url}
@@ -258,18 +286,50 @@ const HeaderSection = (props: any) => {
                     </li>
                   ))}
                 </ul>
-                <div className="flex justify-start h-[145px] w-[120px]">
-                  <a
-                    href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQFbjrcSnY_NwAAAAZNzUgto7aVxWhyjbROF8-3f36DYSPGI-VisVhBiIg2G_9kk6maP-BmJeG_ZWm-CKQvNnCuXFFnXBLA31NxfzUZTTh4c77TorJJ34JXhue3Z8LpMCDsL6jc=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fdavid-andersson-919869131"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                {/* LinkedIn ikonen */}
+                {!isMobile && (
+                  <div
+                    className="hidden md:flex md:justify-end md:h-[145px] md:w-[150px]"
+                    style={{ display: isVisible ? "flex" : "none" }}
                   >
-                    <FaLinkedinIn
-                      className={`text-white text-[38px] transition-opacity duration-300 ${
-                        isVisible ? "opacity-100" : "opacity-0"
-                      }`}
-                    />
-                  </a>
+                    <a
+                      href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQFbjrcSnY_NwAAAAZNzUgto7aVxWhyjbROF8-3f36DYSPGI-VisVhBiIg2G_9kk6maP-BmJeG_ZWm-CKQvNnCuXFFnXBLA31NxfzUZTTh4c77TorJJ34JXhue3Z8LpMCDsL6jc=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fdavid-andersson-919869131"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaLinkedinIn
+                        className={`text-white text-[38px] transition-opacity duration-300 ${
+                          isVisible ? "opacity-100" : "opacity-0"
+                        }`}
+                      />
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              <div
+                className={`fixed flex-col h-[100vh] w-full left-0 top-0 z-50 bg-white gap-5 pt-24  transition-all duration-500 right-0 ${
+                  isMenuOpen ? "translate-x-0" : "translate-x-full"
+                }`}
+              >
+                <button
+                  className="fixed top-0 right-0 z-10"
+                  onClick={toggleMenu}
+                >
+                  <IoMdClose fontSize={60} />
+                </button>
+                <div className="flex items-center justify-center h-[62vh]">
+                  <ul>
+                    {menuItems.map((element: any, i: number) => (
+                      <li key={i} className="mb-[20px]" onClick={toggleMenu}>
+                        <LinkBtn
+                          className={"font-small text-[38px]"}
+                          link={element.link.url}
+                          title={element.title}
+                        />
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>

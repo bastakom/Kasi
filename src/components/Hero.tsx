@@ -9,7 +9,7 @@ export const Hero = ({ blok }: any) => {
 
   return (
     <section {...storyblokEditable(blok)}>
-      <div className="h-[80vh] py-[5rem] w-[1920px]  relative">
+      <div className="h-[80vh] py-[5rem] w-full  relative">
         <Image src={bg.filename} alt="" layout="fill" object-fit="cover" />
         {/* Subheading text */}
         <div

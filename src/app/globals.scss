@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* styles/globals.css */
+/* Endast för elements inom services-section */
+
+
+.services-section .serviceWrapper:nth-of-type(2) {
+  width: 100%;
+  align-items: flex-end;
+  margin-top: 4rem;
+}
+
+.services-section .serviceWrapper:nth-of-type(2) h3,
+.services-section .serviceWrapper:nth-of-type(2) p {
+  width: 60%;
+}
+
+.services-section .serviceWrapper:nth-of-type(3) {
+  width: 60%;
+  margin-left: 140px;
+}
+
+  .cross {
+    position: relative;
+    width: 20px; 
+    height: 20px;
+    margin-left: auto; 
+    cursor: pointer;
+  }
+  
+  
+  .cross span {
+    position: absolute;
+    width: 100%;
+    height: 2px; 
+    background-color: black; 
+    top: 50%;
+    left: 0;
+    transform-origin: center;
+  }
+  
+  .cross span:first-child {
+    transform: rotate(45deg); 
+  }
+  
+  .cross span:last-child {
+    transform: rotate(-45deg); 
+  }
+  
+  .material-symbols-outlined {
+    font-size: 20px;
+  color: black;
+  font-weight: 100;
+  }
+  
+ 

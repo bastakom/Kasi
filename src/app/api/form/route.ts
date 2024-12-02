@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API)
+const resend = new Resend("re_BZbnyodR_KByLeBLYmf3oS3kwsubNarK6")
 
 export async function POST(req: Request) {
   const { name, number, email, message } = await req.json()

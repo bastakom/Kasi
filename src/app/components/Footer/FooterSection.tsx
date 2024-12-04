@@ -5,7 +5,10 @@ export const FooterSection = (props: any) => {
   const { footer_blocks, Logo, home } = props.props.story.content;
 
   return (
-    <footer className="flex flex-col lg:min-h-screen bg-[#24272D]  mt-[2rem] md:mt-[2rem]">
+    <footer
+      className="flex flex-col lg:min-h-screen bg-[#24272D]  mt-[2rem] md:mt-[2rem]"
+      id="footer"
+    >
       <div className="gridContainer grid grid-cols-1 md:grid-cols-2 lg:h-[100vh] md:p-[1rem] lg:p-[5rem] flex-grow">
         {/* Kontaktinformation */}
         <div className="wrapper">

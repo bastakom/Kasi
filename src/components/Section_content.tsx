@@ -2,19 +2,20 @@ import { storyblokEditable } from "@storyblok/react";
 
 export const Section = ({ blok, index }: any) => {
   const { heading, image, paragraph } = blok;
+  console.log("ifrån section content", blok);
   return (
     <section
       id="about"
-      className={
-        "pb-[2rem] md:justify-normal md:pb-[0rem] md:flex md:flex-row "
-      }
+      className={`${
+        blok.position ? "sectionContentFirst" : "sectionContentSecond"
+      } `}
       {...storyblokEditable(blok)}
     >
-      <div className=" p-[0rem] pl-[2rem] block md:p-[4rem] w-[90%] md:pl-[6rem] md:flex flex-row gap-2 md:w-[75%] ">
-        <h2 className="text-[25px] w-[90%] mb-[1rem] mt-[1rem] md:mb-[0rem]  md:mt-[0rem] md:w-[10%] font-medium">
+      <div className="sectionWrapper p-[1rem] block md:pt-[3rem] lg:p-[4rem] lg:pl-[6rem] md:gap-[20px] lg:gap-[40px] md:flex flex-row gap-2 lg:w-[75%] ">
+        <h2 className="text-[25px] mb-[1rem] mt-[1rem] md:mb-[0rem] md:w-[150px] lg:w-[120px] md:mt-[0rem]  font-medium">
           {heading}
         </h2>
-        <div className="md:w-[82%]">
+        <div className="md:w-[85%]">
           <p className=" text-[25px] md:text-[38px] font-medium ">
             {paragraph}
           </p>

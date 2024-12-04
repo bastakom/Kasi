@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     <div style="background-color: #f9f9f9; padding: 20px;">
       <p>Meddelande från: ${name}</p>
       <h3>Email: ${email}</h3>
-      <h3>Number: ${number}</h3>
+      <h3>Telefon: ${number}</h3>
       <p>Meddelande: ${message}</p>
     </div>
   `

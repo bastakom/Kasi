@@ -42,10 +42,7 @@ export default function RootLayout({
       <html lang="sv" className={quicksand.className}>
         <body>
           <Header />
-          <main>
-            {children}
-            <Form />
-          </main>
+          <main>{children}</main>
           <Footer />
         </body>
       </html>

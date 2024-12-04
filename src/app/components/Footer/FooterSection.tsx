@@ -1,84 +1,52 @@
-import CallIcon from "@mui/icons-material/Call";
-import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
-import LinkBtn from "@/components/LinkBtn";
-import LocationOn from "@mui/icons-material/LocationOn";
-import { SlLocationPin } from "react-icons/sl";
-import { MdOutlineAlternateEmail } from "react-icons/md";
-import { LuPhone } from "react-icons/lu";
+import { Form } from "../Form/Form";
+import { FaLinkedinIn } from "react-icons/fa6";
 
 export const FooterSection = (props: any) => {
   const { footer_blocks, Logo, home } = props.props.story.content;
-  return (
-    <footer className="bg-[#ececeb] h-[50vh]">
-      <div className="flex justify-center">
-        <div className="w-[95%]">
-          {footer_blocks.map((el: any) => (
-            <div
-              className="flex justify-around mt-[20px]  relative"
-              key={el._uid}
-            >
-              <div>
-                <h2 className="font-extralight uppercase">
-                  {el.NavigationHeader}
-                </h2>
-                <hr className="border-black w-[90%]  my-4 absolute left-10 right-0 top-[10%]"></hr>
-              </div>
-              <div>
-                <h2 className="font-extralight uppercase">
-                  {el.contactHeading}
-                </h2>
 
-                <div className="flex items-center space-x-2 mt-[20px] mb-2">
-                  <LuPhone />
-                  <div className="font-extralight text-xs uppercase">
-                    {el.number}
+  return (
+    <footer className="flex flex-col lg:min-h-screen bg-[#24272D]  mt-[2rem] md:mt-[2rem]">
+      <div className="gridContainer grid grid-cols-1 md:grid-cols-2 lg:h-[100vh] md:p-[1rem] lg:p-[5rem] flex-grow">
+        {/* Kontaktinformation */}
+        <div className="wrapper">
+          {footer_blocks.map((el: any) => (
+            <div key={el._uid} className="p-[1rem] md:p-[0rem}">
+              <div className="lg:w-[60%]">
+                <h1 className="text-white smallerFont mb-[1rem]">Kontakt</h1>
+                <div className=" smallerFont md:bigFont">{el.number}</div>
+                <div className="smallerFont md:bigFont mb-[2rem]">
+                  {el.email}
+                </div>
+                <div className="smallerFont mb-[2rem]">
+                  <div className="smallerFont md:bigFont">{el.adress}</div>
+                  <div className="smallerFont md:bigFont mb-2">
+                    {el.zipCode}
                   </div>
                 </div>
-                <div className="flex items-center space-x-2 mb-2">
-                  <MdOutlineAlternateEmail />
-                  <div className="font-extralight text-xs uppercase">
-                    {el.email}
-                  </div>
-                </div>
-                <div className="flex items-center space-x-2 mb-2">
-                  <SlLocationPin />
-                  <div className="font-extralight text-xs uppercase mb-2">
-                    {" " + el.adress + "  ·  " + el.zipCode}
-                  </div>
-                </div>
-                <div className="font-extralight text-xs uppercase mb-2"></div>
-              </div>
-              <div>
-                <h2 className="font-extralight uppercase">{el.followHeader}</h2>
 
                 <a
                   href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQFbjrcSnY_NwAAAAZNzUgto7aVxWhyjbROF8-3f36DYSPGI-VisVhBiIg2G_9kk6maP-BmJeG_ZWm-CKQvNnCuXFFnXBLA31NxfzUZTTh4c77TorJJ34JXhue3Z8LpMCDsL6jc=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fdavid-andersson-919869131"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="fa-brands fa-linkedin mt-[20px] text-blue-600 text-2xl hover:text-blue-800 transition-colors"></i>
+                  <FaLinkedinIn className="text-white text-[28px] md:text-[34px]" />
                 </a>
-              </div>
-              <div>
-                <LinkBtn
-                  link={home.url}
-                  className="flex items-center mt-[50px]"
-                >
-                  {Logo && Logo.filename ? (
-                    <img src={Logo.filename} alt="Logo" className="h-8" />
-                  ) : (
-                    <span>No logo available</span>
-                  )}
-                </LinkBtn>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Formulär */}
+        <div className="wrapper">
+          <Form />
+        </div>
       </div>
-      <div className="w-full mt-[80px]">
-        <small className="block text-center">
-          © {footer_blocks[0].copyrightText}
-        </small>
+
+      {/* Copyright */}
+      <div className=" wrapper smallerFont md:mediumFont ml-[25px] lg:ml-[80px]">
+        {footer_blocks[0]?.copyrightText && (
+          <div className="text-white">© {footer_blocks[0]?.copyrightText}</div>
+        )}
       </div>
     </footer>
   );

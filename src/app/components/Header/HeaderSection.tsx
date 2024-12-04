@@ -154,19 +154,14 @@ import { IoMdClose } from "react-icons/io";
 const HeaderSection = (props: any) => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [positioning, setPositioning] = useState("right: 0%");
-  const [ulStyling, setUlStyling] = useState({
-    color: "transparent",
-    padding: "0",
-    paddingLeft: "0",
-  });
+
   const [textColor, setTextColor] = useState<string>("text-white");
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [activeMenu, setActiveMenu] = useState<number | null>(null);
 
   const handleResize = () => {
     // Kolla skärmstorlek för att sätta isMobile flaggan
-    if (window.innerWidth <= 600) {
+    if (window.innerWidth <= 900) {
       setIsMobile(true);
     } else {
       setIsMobile(false);
@@ -175,25 +170,17 @@ const HeaderSection = (props: any) => {
 
   const handleScroll = () => {
     // Ändra visibilitet av LinkedIn-ikonen baserat på scrollposition och skärmstorlek
-    if (window.scrollY <= 450 && !isMobile) {
+    if (window.scrollY <= 790 && !isMobile) {
       setIsVisible(true); // Visa LinkedIn-ikonen om scrollposition är under 450px och inte mobil
     } else {
       setIsVisible(false);
     }
 
     // Ändra textfärg och menyposition baserat på scrollposition
-    if (window.scrollY > 450) {
+    if (window.scrollY > 790 && window.scrollY < 4890) {
       setTextColor("text-black");
-      setUlStyling({ color: "#ececeb", padding: "30px", paddingLeft: "40px" });
-      setPositioning("-15%");
     } else {
       setTextColor("text-white");
-      setPositioning("0%");
-      setUlStyling({
-        color: "transparent",
-        padding: "0",
-        paddingLeft: "0",
-      });
     }
   };
 
@@ -217,6 +204,7 @@ const HeaderSection = (props: any) => {
   };
 
   const handleMenuClick = (index: number) => {
+    console.log(activeMenu);
     setActiveMenu(index); // Set active menu index
   };
 
@@ -226,16 +214,16 @@ const HeaderSection = (props: any) => {
   return (
     <header>
       <nav
-        className="fixed top-[6%] md:top-[8%] left-[75%] right-0 z-10"
-        style={{ right: isMobile ? "-2%" : positioning, zIndex: 1000 }}
+        className="absolute top-[6%] left-[77%] lg:fixed  lg:top-[8%] lg:left-[75%] right-0 z-10"
+        style={{ zIndex: 1000 }}
       >
         <div className="max-w-screen-xl mx-auto md:p-4">
-          <div className="flex items-center justify-center">
-            <div className="flex items-center">
+          <div className="flex  items-center md:justify-center">
+            <div className="flex md:items-center lg:ml-[5rem]">
               {/* Hamburger-meny knapp */}
               <button
                 type="button"
-                className="inline-flex items-center p-2 w-16 h-16 justify-center text-sm rounded-lg md:hidden focus:outline-none"
+                className="inline-flex items-center p-2 w-16 h-16 justify-center text-sm rounded-lg lg:hidden focus:outline-none"
                 aria-controls="navbar-search"
                 aria-expanded={isMenuOpen ? "true" : "false"}
                 onClick={toggleMenu}
@@ -261,20 +249,13 @@ const HeaderSection = (props: any) => {
               </button>
 
               {/* Meny för större skärmar */}
-              <div className="flex items-center w-full justify-between md:justify-center">
-                <ul
-                  className="hidden md:flex md:flex-col md:mt-0 md:border-0 md:bg-transparent justify-evenly"
-                  style={{
-                    backgroundColor: ulStyling.color,
-                    padding: ulStyling.padding,
-                    paddingLeft: ulStyling.paddingLeft,
-                  }}
-                >
+              <div className="flex items-center lg:w-full lg:min-w-[298.4px] justify-between lg:justify-center">
+                <ul className="hidden lg:flex lg:flex-grow lg:flex-col lg:mt-0 lg:border-0 lg:bg-transparent justify-evenly">
                   {menuItems.map((element: any, i: number) => (
                     <li
                       key={i}
                       onClick={() => handleMenuClick(i)}
-                      className={`cursor-pointer ${
+                      className={`cursor-pointer md:flex-grow  ${
                         activeMenu === i ? "underline" : ""
                       }`}
                     >
@@ -289,7 +270,7 @@ const HeaderSection = (props: any) => {
                 {/* LinkedIn ikonen */}
                 {!isMobile && (
                   <div
-                    className="hidden md:flex md:justify-end md:h-[145px] md:w-[150px]"
+                    className="hidden xl:flex xl:justify-center xl:h-[145px] xl:w-[150px]"
                     style={{ display: isVisible ? "flex" : "none" }}
                   >
                     <a
@@ -329,6 +310,16 @@ const HeaderSection = (props: any) => {
                         />
                       </li>
                     ))}
+
+                    <div className="flex justify-end mt-[4rem]">
+                      <a
+                        href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQFbjrcSnY_NwAAAAZNzUgto7aVxWhyjbROF8-3f36DYSPGI-VisVhBiIg2G_9kk6maP-BmJeG_ZWm-CKQvNnCuXFFnXBLA31NxfzUZTTh4c77TorJJ34JXhue3Z8LpMCDsL6jc=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fdavid-andersson-919869131"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaLinkedinIn className="text-[#3f3f46] text-[38px]" />
+                      </a>
+                    </div>
                   </ul>
                 </div>
               </div>

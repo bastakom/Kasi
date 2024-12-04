@@ -83,11 +83,11 @@ const Services = ({ blok }: any) => {
 
   return (
     <section {...storyblokEditable(blok)} className="services-section">
-      <div className="pb-[2rem]  md:pb-[0rem] md:flex-row flex">
-        <div className="p-[0rem] gap-6 flex-col md:p-[5rem] flex-wrap flex items-start md:flex-row md:gap-10 w-[100%]">
+      <div className=" md:pb-[0rem] md:flex-row flex md:pt-[2rem]">
+        <div className="p-[1rem] gap-6 flex-col  lg:p-[5rem] flex-wrap flex items-start md:flex-row md:gap-10 w-[100%]">
           <h2
             id="tjanster"
-            className="text-[25px] text-start font-medium pl-[1.5rem]"
+            className="text-[25px] text-start font-medium lg:pl-[1.5rem]"
           >
             {Heading}
           </h2>
@@ -95,12 +95,12 @@ const Services = ({ blok }: any) => {
             return (
               <div
                 key={el._uid}
-                className="serviceWrapper w-[90%] gap-[10px] md:w-[60%] flex justify-center flex-col md:gap-[20px]"
+                className="serviceWrapper  gap-[10px] lg:w-[60%] flex justify-center flex-col md:gap-[20px]"
               >
-                <h3 className="text-[25px]  ml-[1.5rem] md:ml-[0rem] text-start font-semibold">
+                <h3 className="text-[25px]  text-start font-semibold">
                   {el.title}
                 </h3>
-                <p className="text-[25px] md:text-[38px] md:ml-[0rem] font-medium text-start ml-[1.5rem] ">
+                <p className="text-[25px] md:text-[38px]  font-medium text-start ">
                   {el.paragraph}
                 </p>
 
@@ -112,17 +112,17 @@ const Services = ({ blok }: any) => {
                   } `}
                 >
                   {el.content1 && (
-                    <div className=" textarea ml-[2.5rem] md:ml-[0rem]">
+                    <div className=" textarea ml-[1rem] md:ml-[0rem]">
                       {render(el.content1)}
                     </div>
                   )}
                   {el.content2 && (
-                    <div className=" textarea ml-[2.5rem] md:ml-[0rem]">
+                    <div className=" textarea ml-[1rem] md:ml-[0rem]">
                       {render(el.content2)}
                     </div>
                   )}
                 </div>
-                <hr className="ml-[2rem] mt-[20px] border-t-2 border-gray-400 md:ml-[0rem]" />
+                <hr className=" mt-[20px] border-t-2 border-gray-400 md:ml-[0rem]" />
               </div>
             );
           })}

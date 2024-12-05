@@ -1,6 +1,4 @@
-import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
-import HeaderSection from "./HeaderSection";
-import { FooterSection } from "../Footer/FooterSection";
+import { FooterSection } from "./FooterSection";
 
 async function fetchData() {
   const res = await fetch(
@@ -11,7 +9,7 @@ async function fetchData() {
   return res.json();
 }
 
-export const Header = async () => {
+export const Footer = async () => {
   const story = await fetchData();
-  return <HeaderSection props={story} />;
+  return <FooterSection props={story} />;
 };

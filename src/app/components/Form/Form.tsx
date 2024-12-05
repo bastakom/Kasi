@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { PopUpModal } from "@/components/PopUpModal";
 
 export const Form = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ export const Form = () => {
   });
 
   const [isChecked, setIsChecked] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -20,7 +22,6 @@ export const Form = () => {
       [name]: value,
     }));
   };
-  console.log(isChecked);
 
   const handleCheckBox = () => {
     setIsChecked((prevChecked) => !prevChecked);
@@ -36,6 +37,7 @@ export const Form = () => {
       if (response.ok) {
         setFormData({ name: "", number: "", email: "", message: "" });
         setIsChecked(false);
+        setIsModalOpen(true);
       }
     } catch {
       throw new Error("failed");
@@ -43,7 +45,8 @@ export const Form = () => {
   };
 
   return (
-    <div id="contact-form" className="p-[1rem] md:p-[0rem]">
+    <div id="contact-form" className="p-[2rem] md:p-[0rem]">
+      {isModalOpen && <PopUpModal />}
       <div className=" ">
         <div className=" "></div>
         <form className="lg:ml-[-12rem]" onSubmit={handleSubmit}>
@@ -56,6 +59,7 @@ export const Form = () => {
               placeholder="För och efternamn*"
               value={formData.name}
               onChange={handleInputChange}
+              required
             />
           </div>
 
@@ -82,6 +86,7 @@ export const Form = () => {
               placeholder="Email*"
               value={formData.email}
               onChange={handleInputChange}
+              required
             />
           </div>
 
@@ -101,7 +106,7 @@ export const Form = () => {
           <div className="flex items-start gap-2 mb-[30px]">
             <input
               id="checkbox"
-              className=" bg-[#24272D]  w-[22px] h-[22px] md:w-[22px]"
+              className=" bg-[#24272D] w-[22px] h-[22px] md:w-[22px]"
               type="checkbox"
               checked={isChecked}
               onChange={handleCheckBox}
@@ -116,7 +121,7 @@ export const Form = () => {
           <div className="flex lg:w-[37.5vw] ">
             <button
               type="submit"
-              className={`border-2 w-[100%] border-white bg-transparent text-white font-bold py-2 px-6 focus:outline-none ${
+              className={`border-2 w-[100%] border-white bg-transparent text-white  active:bg-white active:text-black hover:bg-white hover:text-black font-bold py-2 px-6 focus:outline-none ${
                 !isChecked ? "opacity-50 cursor-not-allowed" : "opacity-100"
               }`}
               disabled={!isChecked}

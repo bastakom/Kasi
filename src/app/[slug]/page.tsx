@@ -11,15 +11,15 @@ async function fetchData(slug: string) {
     const data = await client.get(`cdn/stories/${slug}`, sbParams);
 
     if (!data) {
-      throw new Error("Not Found");
+      redirect("/not-found");
     }
 
     return { data };
   } catch (error: any) {
     if (error.response && error.response.status === 500) {
-      redirect("/500");
+      redirect("/not-found");
     } else {
-      throw error;
+      redirect("/not-found");
     }
   }
 }

@@ -77,8 +77,6 @@ import { storyblokEditable } from "@storyblok/react/rsc";
 import { render } from "storyblok-rich-text-react-renderer";
 
 const Services = ({ blok }: any) => {
-  console.log("ifrån services ", blok.tjanster_block[2]);
-
   const { tjanster_block, Heading } = blok;
 
   return (
@@ -87,7 +85,7 @@ const Services = ({ blok }: any) => {
         <div className="p-[1rem] gap-6 flex-col  lg:p-[5rem] flex-wrap flex items-start md:flex-row md:gap-10 w-[100%]">
           <h2
             id="tjanster"
-            className="text-[25px] text-start font-medium lg:pl-[1.5rem]"
+            className="text-[20px] md:text-[25px] text-start font-medium lg:pl-[1.5rem]"
           >
             {Heading}
           </h2>
@@ -97,7 +95,7 @@ const Services = ({ blok }: any) => {
                 key={el._uid}
                 className="serviceWrapper  gap-[10px] lg:w-[60%] flex justify-center flex-col md:gap-[20px]"
               >
-                <h3 className="text-[25px]  text-start font-semibold">
+                <h3 className="text-[20px] md:text-[25px]  text-start font-semibold">
                   {el.title}
                 </h3>
                 <p className="text-[25px] md:text-[38px]  font-medium text-start ">

@@ -1,15 +1,17 @@
+import LinkBtn from "@/components/LinkBtn";
 import { Form } from "../Form/Form";
 import { FaLinkedinIn } from "react-icons/fa6";
+import Link from "next/link";
 
 export const FooterSection = (props: any) => {
   const { footer_blocks, Logo, home } = props.props.story.content;
 
   return (
     <footer
-      className="flex flex-col lg:min-h-screen bg-[#24272D]  mt-[2rem] md:mt-[2rem]"
       id="footer"
+      className="flex flex-col lg:min-h-screen bg-[#24272D] pb-[2rem] md:pb-[3rem] mt-[2rem] md:mt-[2rem]"
     >
-      <div className="gridContainer grid grid-cols-1 md:grid-cols-2 lg:h-[100vh] md:p-[1rem] lg:p-[5rem] flex-grow">
+      <div className="gridContainer pr-[1rem] pl-[1rem] grid grid-cols-1 md:grid-cols-2 lg:h-[100vh] md:p-[2rem] lg:p-[5rem] flex-grow">
         {/* Kontaktinformation */}
         <div className="wrapper">
           {footer_blocks.map((el: any) => (
@@ -18,8 +20,11 @@ export const FooterSection = (props: any) => {
                 <h1 className="text-white smallerFont mb-[1rem]">Kontakt</h1>
                 <div className=" smallerFont md:bigFont">{el.number}</div>
                 <div className="smallerFont md:bigFont mb-[2rem]">
-                  {el.email}
+                  <Link href={"mailto:david.andersson@kasi.se"}>
+                    {el.email}
+                  </Link>
                 </div>
+
                 <div className="smallerFont mb-[2rem]">
                   <div className="smallerFont md:bigFont">{el.adress}</div>
                   <div className="smallerFont md:bigFont mb-2">
@@ -27,13 +32,9 @@ export const FooterSection = (props: any) => {
                   </div>
                 </div>
 
-                <a
-                  href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQFbjrcSnY_NwAAAAZNzUgto7aVxWhyjbROF8-3f36DYSPGI-VisVhBiIg2G_9kk6maP-BmJeG_ZWm-CKQvNnCuXFFnXBLA31NxfzUZTTh4c77TorJJ34JXhue3Z8LpMCDsL6jc=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fdavid-andersson-919869131"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <LinkBtn link={el.linkedIn.url}>
                   <FaLinkedinIn className="text-white text-[28px] md:text-[34px]" />
-                </a>
+                </LinkBtn>
               </div>
             </div>
           ))}

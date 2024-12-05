@@ -2,11 +2,10 @@
 import type { PropsWithChildren } from "react";
 import { storyblokInit } from "@storyblok/react/rsc";
 import Page from "./Page";
-import Header from "./Header";
 import { Hero } from "./Hero";
-import { Section } from "./Section_content";
+import { Section } from "./SectionContent";
 import Services from "./services";
-import SectionImage from "./Content_image";
+import SectionImage from "./ContentImage";
 
 storyblokInit({
   components: {
@@ -14,7 +13,7 @@ storyblokInit({
     hero: Hero,
     section_content: Section,
     content_image: SectionImage,
-    config: Header,
+
     tjanster: Services,
   },
   enableFallbackComponent: true,

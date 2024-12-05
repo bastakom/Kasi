@@ -3,8 +3,8 @@ import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import { StoryblokProvider } from "@/components/StoryblokProvider";
 import "./globals.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { Header, Footer } from "./components/Header/Header";
-import { Form } from "./components/Form/Form";
+import { Header } from "./components/Header/Header";
+import { Footer } from "./components/Footer/Footer";
 import { Quicksand } from "next/font/google";
 
 export const metadata: Metadata = {

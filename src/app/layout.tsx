@@ -6,6 +6,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { Quicksand } from "next/font/google";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Kasi Ab",
@@ -45,6 +46,15 @@ export default function RootLayout({
           <Header />
           <main id="main">{children}</main>
           <Footer />
+          <Script src="https://consent.cookiebot.com/uc.js" />
+          <script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="54d930ab-fae6-4cd8-86ec-6ec0423efcde"
+            data-blockingmode="manual"
+            type="text/javascript"
+            async
+          ></script>
         </body>
       </html>
     </StoryblokProvider>

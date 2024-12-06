@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Custom404 = () => {
+export const Custom404 = () => {
   return (
     <main>
       <div className="h-[60vh] flex flex-col justify-center items-center">

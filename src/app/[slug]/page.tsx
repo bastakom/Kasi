@@ -1,5 +1,5 @@
 import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 async function fetchData(slug: string) {
   let sbParams = {
@@ -11,15 +11,15 @@ async function fetchData(slug: string) {
     const data = await client.get(`cdn/stories/${slug}`, sbParams);
 
     if (!data) {
-      redirect("/not-found");
+      notFound();
     }
 
     return { data };
   } catch (error: any) {
     if (error.response && error.response.status === 500) {
-      redirect("/not-found");
+      notFound();
     } else {
-      redirect("/not-found");
+      notFound();
     }
   }
 }

@@ -1,3 +1,4 @@
+"use client";
 import LinkBtn from "@/components/LinkBtn";
 import { Form } from "../Form/Form";
 import { FaLinkedinIn } from "react-icons/fa6";

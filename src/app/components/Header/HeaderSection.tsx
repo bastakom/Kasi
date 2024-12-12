@@ -110,7 +110,7 @@ const HeaderSection = (props: any) => {
   return (
     <header>
       <nav
-        className={`absolute top-[6%] left-[77%] lg:fixed lg:top-[6%] lg:left-[75%] right-0 z-10 ${
+        className={`absolute top-[6%] left-[77%] lg:fixed lg:top-[6%] lg:left-[75%] right-0 z-8 ${
           isScrollingUp ? "visible opacity-100" : "invisible opacity-0"
         } transition-opacity duration-300`}
         style={{ zIndex: 1000 }}

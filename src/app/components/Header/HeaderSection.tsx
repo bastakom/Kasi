@@ -11,6 +11,8 @@ const HeaderSection = (props: any) => {
   const [activeSection, setActiveSection] = useState("");
   const [isMobile, setIsMobile] = useState(false);
   const [headerActive, setHeaderActive] = useState();
+  const [isScrollingUp, setIsScrollingUp] = useState(true);
+  let lastScrollPosition = 0;
   const sections = [
     { id: "hero", name: "Sektion 1", color: "text-white" },
     { id: "main", name: "Sektion 2", color: "text-black" },
@@ -23,6 +25,17 @@ const HeaderSection = (props: any) => {
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY + window.innerHeight / 8;
+
+    // Kontrollera scroll-riktningen
+    if (scrollPosition > lastScrollPosition) {
+      // Scrollar ner
+      setIsScrollingUp(false);
+    } else if (scrollPosition < lastScrollPosition) {
+      // Scrollar upp
+      setIsScrollingUp(true);
+    }
+
+    lastScrollPosition = scrollPosition;
 
     if (window.scrollY <= 790 && !isMobile) {
       setIsVisible(true);
@@ -97,7 +110,9 @@ const HeaderSection = (props: any) => {
   return (
     <header>
       <nav
-        className="absolute top-[6%]  left-[77%] lg:fixed  lg:top-[6%] lg:left-[75%] right-0 z-10"
+        className={`absolute top-[6%] left-[77%] lg:fixed lg:top-[6%] lg:left-[75%] right-0 z-10 ${
+          isScrollingUp ? "visible opacity-100" : "invisible opacity-0"
+        } transition-opacity duration-300`}
         style={{ zIndex: 1000 }}
       >
         <div className="max-w-screen-xl mx-auto md:p-4 lg:p-0">

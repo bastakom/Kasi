@@ -19,18 +19,12 @@ const quicksand = Quicksand({
   weight: ["300", "400", "500", "700"],
   display: "swap",
 });
-const cachedFetch = (input: any, init?: any): Promise<Response> => {
-  return fetch(input, {
-    ...init,
-    cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-  });
-};
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_TOKEN,
   use: [apiPlugin],
   apiOptions: {
-    fetch: cachedFetch,
+    region: "eu",
   },
 });
 

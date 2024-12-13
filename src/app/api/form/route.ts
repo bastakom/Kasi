@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 
-const resend = new Resend("re_fKcPmHZC_K3kxQSbiA8rKHmwWbdqHz46u")
+const resend = new Resend(process.env.RESEND_API)
 
 export async function POST(req: Request) {
   const { name, number, email, message } = await req.json()
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
   try {
     const { data, error } = await resend.emails.send({
       from: 'Notifikation: Kontakt <onboarding@resend.dev>',
-      to: ['David.andersson@kasi.se'],
+      to: ['david.andersson@kasi.se'],
       subject: 'Meddelande',
       html: messageBody,
     })

@@ -25,13 +25,13 @@ const HeaderSection = (props: any) => {
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY + window.innerHeight / 8;
+    const threshold = 10;
 
-    // Kontrollera scroll-riktningen
-    if (scrollPosition > lastScrollPosition) {
-      // Scrollar ner
+    if (window.scrollY <= threshold) {
+      setIsScrollingUp(true);
+    } else if (scrollPosition > lastScrollPosition) {
       setIsScrollingUp(false);
     } else if (scrollPosition < lastScrollPosition) {
-      // Scrollar upp
       setIsScrollingUp(true);
     }
 

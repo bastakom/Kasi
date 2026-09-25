@@ -13,7 +13,7 @@ storyblokInit({
     page: Page,
     hero: Hero,
     section_content: Section,
-    content_image: SectionImage,
+    content_image: SectionImage, 
     partner_logo_grid: PartnerLogoGrid,
 
     tjanster: Services,

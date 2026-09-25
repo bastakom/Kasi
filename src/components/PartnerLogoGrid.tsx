@@ -46,11 +46,11 @@ const PartnerLogoGrid = ({ blok }: any) => {
           </h2>
         )}
 
-        <div className="grid grid-cols-2 gap-x-[1.5rem] gap-y-[2rem] sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+        <div className="flex flex-wrap justify-center gap-x-[1.5rem] gap-y-[2rem] md:gap-x-[2.25rem] lg:gap-x-[3rem]">
           {logos.map(({ item, asset }: any, index: number) => (
             <div
               key={item._uid || `${asset.filename}-${index}`}
-              className="flex min-h-[92px] items-center justify-center"
+              className="flex min-h-[92px] basis-[calc((100%_-_1.5rem)/2)] items-center justify-center sm:basis-[calc((100%_-_3rem)/3)] md:basis-[calc((100%_-_6.75rem)/4)] lg:basis-[calc((100%_-_18rem)/7)]"
             >
               <Image
                 src={asset.filename}

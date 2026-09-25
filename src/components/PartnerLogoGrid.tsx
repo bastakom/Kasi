@@ -84,12 +84,8 @@ const PartnerLogoGrid = ({ blok }: any) => {
                 {href ? (
                   <a
                     href={href}
-                    target={item.link?.target || undefined}
-                    rel={
-                      item.link?.target === "_blank"
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex h-full w-full items-center justify-center"
                   >
                     {logoImage}

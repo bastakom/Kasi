@@ -5,7 +5,7 @@ const hasImage = (image: any) =>
   typeof image?.filename === "string" && image.filename.length > 0;
 
 export const Section = ({ blok }: any) => {
-  const { heading, paragraph, paragraph_image } = blok;
+  const { heading, paragraph, paragraph_image, paragraph_image_text } = blok;
   const showParagraphImage = hasImage(paragraph_image);
 
   return (
@@ -28,6 +28,11 @@ export const Section = ({ blok }: any) => {
               height={900}
               className="w-full h-auto max-h-[620px] object-cover"
             />
+            {paragraph_image_text && (
+              <p className="mt-[0.75rem] text-[16px] md:text-[18px] font-medium leading-snug text-gray-700">
+                {paragraph_image_text}
+              </p>
+            )}
           </div>
         )}
 

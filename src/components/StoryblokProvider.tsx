@@ -6,6 +6,7 @@ import { Hero } from "./Hero";
 import { Section } from "./SectionContent";
 import Services from "./services";
 import SectionImage from "./ContentImage";
+import PartnerLogoGrid from "./PartnerLogoGrid";
 
 storyblokInit({
   components: {
@@ -13,6 +14,7 @@ storyblokInit({
     hero: Hero,
     section_content: Section,
     content_image: SectionImage,
+    partner_logo_grid: PartnerLogoGrid,
 
     tjanster: Services,
   },

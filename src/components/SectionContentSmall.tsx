@@ -44,7 +44,7 @@ export const SectionSmall = ({ blok }: any) => {
         </h2>
 
         <div className={textWrapperClassName}>
-          <p className="block w-full max-w-[65ch] text-[25px] font-normal leading-[1.45]">
+          <p className="!block !w-full !max-w-[65ch] !text-[25px] !font-normal !leading-[1.45]">
             {paragraph}
           </p>
           <hr className="mt-[40px] border-t-2 border-gray-400" />

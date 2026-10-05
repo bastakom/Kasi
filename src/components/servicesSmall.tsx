@@ -1,7 +1,8 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
 
 const ServicesSmall = ({ blok }: any) => {
-  const { tjanster_block, Heading } = blok;
+  const { tjanster_block, Heading, heading } = blok;
+  const sectionHeading = Heading || heading;
 
   return (
     <section {...storyblokEditable(blok)} className="services-section">
@@ -11,13 +12,13 @@ const ServicesSmall = ({ blok }: any) => {
             id="tjanster"
             className="text-[20px] md:text-[25px] text-start font-medium lg:pl-[1.5rem]"
           >
-            {Heading}
+            {sectionHeading}
           </h2>
           {tjanster_block.map((el: any) => {
             return (
               <div
                 key={el._uid}
-                className="serviceWrapper gap-[10px] lg:!w-full lg:!ml-0 flex justify-center flex-col md:gap-[20px]"
+                className="serviceWrapper gap-[10px] lg:w-[60%] flex justify-center flex-col md:gap-[20px]"
               >
                 <h3 className="text-[20px] md:text-[25px]  text-start font-semibold">
                   {el.title}

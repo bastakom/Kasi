@@ -4,6 +4,8 @@ import Image from "next/image";
 const hasImage = (image: any) =>
   typeof image?.filename === "string" && image.filename.length > 0;
 
+const isEnabled = (value: any) => value === true || value === "true";
+
 export const Section = ({ blok }: any) => {
   const {
     heading,
@@ -13,14 +15,13 @@ export const Section = ({ blok }: any) => {
     small_paragraph,
   } = blok;
   const showParagraphImage = hasImage(paragraph_image);
-  const paragraphClassName = small_paragraph
+  const useSmallParagraph = isEnabled(small_paragraph);
+  const paragraphClassName = useSmallParagraph
     ? "block w-full max-w-[65ch] text-[25px] font-normal leading-[1.45]"
     : "text-[25px] md:text-[38px] font-medium";
   const textWrapperClassName = showParagraphImage
-    ? small_paragraph
-      ? "lg:flex-1"
-      : "lg:flex-1"
-    : small_paragraph
+    ? "lg:flex-1 lg:min-w-0"
+    : useSmallParagraph
       ? "lg:w-full"
       : "lg:w-[85%]";
 
@@ -32,7 +33,7 @@ export const Section = ({ blok }: any) => {
     >
       <div
         className={`sectionWrapper p-[1rem] block md:pt-[3rem] lg:p-[4rem] lg:pl-[6rem] lg:pr-[4rem] md:gap-[20px] lg:gap-[40px] lg:flex ${
-          showParagraphImage ? "lg:w-full lg:max-w-[1320px]" : "lg:w-[75%]"
+          showParagraphImage ? "lg:w-full lg:max-w-[1600px]" : "lg:w-[75%]"
         }`}
       >
         {showParagraphImage && (

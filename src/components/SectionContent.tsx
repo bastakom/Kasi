@@ -5,8 +5,17 @@ const hasImage = (image: any) =>
   typeof image?.filename === "string" && image.filename.length > 0;
 
 export const Section = ({ blok }: any) => {
-  const { heading, paragraph, paragraph_image, paragraph_image_text } = blok;
+  const {
+    heading,
+    paragraph,
+    paragraph_image,
+    paragraph_image_text,
+    small_paragraph,
+  } = blok;
   const showParagraphImage = hasImage(paragraph_image);
+  const paragraphClassName = small_paragraph
+    ? "text-[25px] font-medium leading-[1.45]"
+    : "text-[25px] md:text-[38px] font-medium";
 
   return (
     <section
@@ -41,7 +50,7 @@ export const Section = ({ blok }: any) => {
         </h2>
 
         <div className={showParagraphImage ? "lg:flex-1" : "lg:w-[85%]"}>
-          <p className="text-[25px] md:text-[38px] font-medium">{paragraph}</p>
+          <p className={paragraphClassName}>{paragraph}</p>
           <hr className="mt-[40px] border-t-2 border-gray-400" />
         </div>
       </div>

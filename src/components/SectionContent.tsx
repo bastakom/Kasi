@@ -14,14 +14,14 @@ export const Section = ({ blok }: any) => {
   } = blok;
   const showParagraphImage = hasImage(paragraph_image);
   const paragraphClassName = small_paragraph
-    ? "text-[25px] font-medium leading-[1.45] max-w-[65ch]"
+    ? "inline-block w-[65ch] max-w-full text-[25px] font-normal leading-[1.45]"
     : "text-[25px] md:text-[38px] font-medium";
   const textWrapperClassName = showParagraphImage
     ? small_paragraph
-      ? "lg:flex-none lg:w-[65ch] lg:max-w-[calc(100%_-_400px)]"
+      ? "lg:flex-1"
       : "lg:flex-1"
     : small_paragraph
-      ? "lg:w-[65ch] lg:max-w-full"
+      ? "lg:w-full"
       : "lg:w-[85%]";
 
   return (

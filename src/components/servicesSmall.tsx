@@ -23,7 +23,7 @@ const ServicesSmall = ({ blok }: any) => {
                 <h3 className="text-[20px] md:text-[25px]  text-start font-semibold">
                   {el.title}
                 </h3>
-                <p className="block w-full max-w-[65ch] text-[25px] font-normal leading-[1.45] text-start">
+                <p className="!block !w-full !max-w-[65ch] !text-[25px] !font-normal !leading-[1.45] text-start">
                   {el.paragraph}
                 </p>
                 <hr className=" mt-[20px] border-t-2 border-gray-400 md:ml-[0rem]" />

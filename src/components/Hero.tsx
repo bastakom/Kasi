@@ -3,7 +3,9 @@ import LinkBtn from "./LinkBtn";
 import Image from "next/image";
 
 export const Hero = ({ blok }: any) => {
-  const { bg, subheading, logo, contact, title, home } = blok;
+  const { bg, subheading, logo, title } = blok;
+  const hasButtonTitle =
+    typeof title === "string" && title.trim().length > 0;
 
   return (
     <section {...storyblokEditable(blok)} id="hero">
@@ -35,11 +37,13 @@ export const Hero = ({ blok }: any) => {
               {subheading}
             </p>
 
-            <LinkBtn
-              className=" w-[65%] md:w-[32.7%] h-[3.25rem] border-2 ml-[0.5rem] border-white font-medium text-[20px] md:ml-[0rem] flex items-center justify-center"
-              link="#contact-form"
-              title={title}
-            />
+            {hasButtonTitle && (
+              <LinkBtn
+                className=" w-[65%] md:w-[32.7%] h-[3.25rem] border-2 ml-[0.5rem] border-white font-medium text-[20px] md:ml-[0rem] flex items-center justify-center"
+                link="#contact-form"
+                title={title}
+              />
+            )}
           </div>
         </div>
       </div>

@@ -1,12 +1,21 @@
 import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
+import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+export const fetchCache = "force-no-store";
+
 async function fetchData(slug: string) {
-  let sbParams = {
+  noStore();
+
+  const sbParams = {
     version: "draft" as const,
+    cv: Date.now(),
   };
 
   const client = getStoryblokApi();
+
   try {
     const data = await client.get(`cdn/stories/${slug}`, sbParams);
 
@@ -16,18 +25,14 @@ async function fetchData(slug: string) {
 
     return { data };
   } catch (error: any) {
-    if (error.response && error.response.status === 500) {
-      notFound();
-    } else {
-      notFound();
-    }
+    notFound();
   }
 }
 
-const Page = async ({ params }: { params: { slug: string } }) => {
-  const pathname = params.slug;
-  const slugName = pathname === undefined ? `home` : pathname;
+const Page = async ({ params }: { params?: { slug?: string } }) => {
+  const slugName = params?.slug || "home";
   const story = await fetchData(slugName);
+
   return <StoryblokStory story={story.data.data.story} />;
 };
 

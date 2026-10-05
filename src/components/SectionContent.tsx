@@ -14,7 +14,7 @@ export const Section = ({ blok }: any) => {
   } = blok;
   const showParagraphImage = hasImage(paragraph_image);
   const paragraphClassName = small_paragraph
-    ? "inline-block w-[65ch] max-w-full text-[25px] font-normal leading-[1.45]"
+    ? "block w-full max-w-[65ch] text-[25px] font-normal leading-[1.45]"
     : "text-[25px] md:text-[38px] font-medium";
   const textWrapperClassName = showParagraphImage
     ? small_paragraph
@@ -52,7 +52,7 @@ export const Section = ({ blok }: any) => {
           </div>
         )}
 
-        <h2 className="text-[20px] md:text-[25px] mb-[2rem] mt-[1rem] md:mb-[0rem] md:w-[150px] lg:w-[120px] md:mt-[0rem] font-medium">
+        <h2 className="text-[20px] md:text-[25px] mb-[2rem] mt-[1rem] md:mb-[0rem] md:w-[150px] lg:w-[160px] lg:min-w-[160px] md:mt-[0rem] font-medium">
           {heading}
         </h2>
 

@@ -14,7 +14,9 @@ export const SectionSmall = ({ blok }: any) => {
   return (
     <section
       id="about"
-      className={blok.position ? "sectionContentFirst" : "sectionContentSecond"}
+      className={`sectionContentSmallBlock ${
+        blok.position ? "sectionContentFirst" : "sectionContentSecond"
+      }`}
       {...storyblokEditable(blok)}
     >
       <div
@@ -44,7 +46,7 @@ export const SectionSmall = ({ blok }: any) => {
         </h2>
 
         <div className={textWrapperClassName}>
-          <p className="!block !w-full !max-w-[65ch] !text-[25px] !font-normal !leading-[1.45]">
+          <p className="sectionContentSmallParagraph">
             {paragraph}
           </p>
           <hr className="mt-[40px] border-t-2 border-gray-400" />

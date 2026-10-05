@@ -183,7 +183,6 @@ html{
         margin-bottom: 1rem;
       }
       
-    
     }
 
     .services-section .serviceWrapper:nth-of-type(2) p {
@@ -237,5 +236,15 @@ html{
 } 
 
   }
+
+.sectionContentSmallBlock .sectionContentSmallParagraph,
+.servicesSmallBlock .servicesSmallParagraph,
+.services-section.servicesSmallBlock .serviceWrapper p.servicesSmallParagraph {
+  display: block !important;
+  width: 100% !important;
+  max-width: 65ch !important;
+  font-size: 25px !important;
+  font-weight: 400 !important;
+  line-height: 1.45 !important;
+}
   
- 

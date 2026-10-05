@@ -1,5 +1,6 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
-import { render } from "storyblok-rich-text-react-renderer";
+
+const isEnabled = (value: any) => value === true || value === "true";
 
 const Services = ({ blok }: any) => {
   const { tjanster_block, Heading } = blok;
@@ -15,17 +16,20 @@ const Services = ({ blok }: any) => {
             {Heading}
           </h2>
           {tjanster_block.map((el: any) => {
+            const useSmallParagraph = isEnabled(el.small_paragraph);
+            const serviceWrapperClassName = useSmallParagraph
+              ? "serviceWrapper gap-[10px] lg:!w-full lg:!ml-0 flex justify-center flex-col md:gap-[20px]"
+              : "serviceWrapper gap-[10px] lg:w-[60%] flex justify-center flex-col md:gap-[20px]";
+            const paragraphClassName = useSmallParagraph
+              ? "block w-full max-w-[65ch] text-[25px] font-normal leading-[1.45] text-start"
+              : "text-[25px] md:text-[38px] font-medium text-start";
+
             return (
-              <div
-                key={el._uid}
-                className="serviceWrapper  gap-[10px] lg:w-[60%] flex justify-center flex-col md:gap-[20px]"
-              >
+              <div key={el._uid} className={serviceWrapperClassName}>
                 <h3 className="text-[20px] md:text-[25px]  text-start font-semibold">
                   {el.title}
                 </h3>
-                <p className="text-[25px] md:text-[38px]  font-medium text-start ">
-                  {el.paragraph}
-                </p>
+                <p className={paragraphClassName}>{el.paragraph}</p>
                 <hr className=" mt-[20px] border-t-2 border-gray-400 md:ml-[0rem]" />
               </div>
             );

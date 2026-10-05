@@ -16,6 +16,11 @@ export const Section = ({ blok }: any) => {
   const paragraphClassName = small_paragraph
     ? "text-[25px] font-medium leading-[1.45]"
     : "text-[25px] md:text-[38px] font-medium";
+  const textWrapperClassName = showParagraphImage
+    ? `lg:flex-1 ${small_paragraph ? "max-w-[65ch]" : ""}`
+    : small_paragraph
+      ? "lg:w-[85%] max-w-[65ch]"
+      : "lg:w-[85%]";
 
   return (
     <section
@@ -49,7 +54,7 @@ export const Section = ({ blok }: any) => {
           {heading}
         </h2>
 
-        <div className={showParagraphImage ? "lg:flex-1" : "lg:w-[85%]"}>
+        <div className={textWrapperClassName}>
           <p className={paragraphClassName}>{paragraph}</p>
           <hr className="mt-[40px] border-t-2 border-gray-400" />
         </div>

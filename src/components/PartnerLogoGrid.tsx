@@ -58,7 +58,7 @@ const PartnerLogoGrid = ({ blok }: any) => {
     >
       <div className="w-full">
         {blok.heading && (
-          <h2 className="mb-[2rem] text-[25px] md:text-[38px] font-medium">
+          <h2 className="mb-[3rem] text-center text-[25px] md:text-[38px] font-medium">
             {blok.heading}
           </h2>
         )}
